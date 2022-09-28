@@ -1,0 +1,17 @@
+.loginContainer{
+    margin: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:50%; 
+
+}
+.input {
+    height: 20px;
+}
+.loginHeader {
+    font-size: 12px;
+    font-weight: bold;
+    background: #DAECFF;
+    text-align: center;
+  }
