@@ -1,15 +1,15 @@
 import * as actionTypes from "../actions/ActionTypes"
 const initialState={
-    token:null,
+    productlist:[],
     error:null
 }
 
-const LoginReducer = (state=initialState,action)=>{
-
-    if(action.type===actionTypes.LOGIN){
+const ProductReducer = (state=initialState,action)=>{
+console.log(action)
+    if(action.type===actionTypes.FETCH_PRODUCTS){
         return {
             ...state,
-            token:action.payload
+            productlist:[...action.payload]
         }
     }
 
@@ -23,4 +23,4 @@ const LoginReducer = (state=initialState,action)=>{
     return state;
 }
 
-export default LoginReducer
+export default ProductReducer
