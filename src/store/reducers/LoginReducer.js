@@ -1,6 +1,7 @@
 import * as actionTypes from "../actions/ActionTypes"
 const initialState={
-    token:null
+    token:null,
+    error:null
 }
 
 const LoginReducer = (state=initialState,action)=>{
@@ -16,7 +17,7 @@ console.log(action)
         console.log(action)
         return {
             ...state,
-            token:action.payload
+            error:action.payload
         }
     }
     return state;

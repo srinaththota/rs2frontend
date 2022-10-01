@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     width:50%; 
+    height: 40vh;
 
 }
 .input {
@@ -15,3 +16,4 @@
     background: #DAECFF;
     text-align: center;
   }
+  

@@ -1,39 +1,51 @@
-import Card from '../ui/Card'
+
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LoginAction } from "../store/actions/LoginAction";
-import classes from "./Login.module.css"
+import { TextField, Typography, Button, Box } from '@mui/material';
+import { Navigate } from "react-router-dom";
 
 
 const Login = () =>{
-   
+
+    const token = useSelector(state=>state.login.token)
+
     const [username,setUsername] = useState("")
     const [password,setPassword] = useState("")
 
     const loginDispatch = useDispatch();
     const handleUsername=(e)=>{
+        if(e.target.value === ''){
+            return
+        }
         setUsername(e.target.value)
     }
     const handlePassword=(e)=>{
+        if(e.target.value === ''){
+            return
+        }
         setPassword(e.target.value)
     }
     const submitHandler=(e)=>{
         e.preventDefault();
         console.log("reached here")
+        if(username !== '' && password !== ''){
         loginDispatch(LoginAction(username,password))
- 
+        }
     }
-    const styles={
-        margin:'0 0 10px 10px' 
-    }
+    
     return(
-        <Card className={classes.loginContainer}>
-        <form onSubmit={submitHandler}>
-        <input className={classes.input} type="text" onChange={handleUsername} value={username}/><br/>
-        <input type="password" onChange={handlePassword} value={password}/><br/>
-        <button type="submit">Submit</button>
-        </form>
-        </Card>
+        <> 
+        {token && <Navigate to="/home" replace={true}/>}
+        <Box display="flex" sx={{flexDirection:'column', justifyContent:'space-around',alignItems:'center', marginTop:20, m:22}}>
+        <TextField id="standard-basic" label="Username" variant="standard" value={username} onChange={handleUsername}/>
+        <Typography display="block"></Typography>
+        <TextField id="standard-basic" label="Password" variant="standard" value={password} onChange={handlePassword}/>
+        <Typography display="block"></Typography>
+        <Button sx={{marginTop:3,marginRight:15}} variant="contained" onClick={submitHandler}>Login</Button>
+        </Box>
+        </>
+        
     )
 }
 
